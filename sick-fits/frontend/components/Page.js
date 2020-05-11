@@ -13,6 +13,38 @@ const theme = {
   bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 }
 
+injectGlobal`
+  @font-face {
+    font-family: 'radnika_next';
+    src: url('/static/radnikanext-medium-webfont.woff2');
+    format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: 10px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'radnika_next';
+    font-size: 1.5rem;
+    line-height: 2;
+  }
+
+  a {
+    color: ${theme.black};
+    text-decoration: none;
+  }
+`;
+
 const StyledPage = styled.div`
   background: #fff;
   color: ${props => props.theme.black};
