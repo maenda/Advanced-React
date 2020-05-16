@@ -35,11 +35,14 @@ class Items extends Component {
       <Center>
         <p>Items</p>
         <Query query={ALL_ITEMS_QUERY}>
-          {({ data, error, loading }) => {
-          console.log(data);
-          if (loading) return <p>Loading...</p>
-          if (error) return <p>Error: {error.message}</p>
-          return <ItemsList>{data.items.map(item => <Item item={item} key={item.id} />)}</ItemsList>
+            {({ data, error, loading }) => {
+            if (loading) return <p>Loading...</p>
+            if (error) return <p>Error: {error.message}</p>
+            return (
+              <ItemsList>
+                {data.items.map(item => <Item item={item} key={item.id} />)}
+              </ItemsList>
+            );
           }}
         </Query>
       </Center>
