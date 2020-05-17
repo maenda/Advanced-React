@@ -53,8 +53,10 @@ class UpdateItem extends Component {
     console.log(this.state);
 
     const res = await updateItemMutation({
-      id: this.props.id,
-      ...this.state,
+      variables: {
+        id: this.props.id,
+        ...this.state,
+      }
     });
 
     console.log('updated');
@@ -110,12 +112,12 @@ class UpdateItem extends Component {
                       />
                     </label>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit">Sav{loading ? 'ing': 'e'} Changes</button>
                   </fieldset>
                 </Form>
               )}
             </Mutation>
-          )
+          );
         }}
       </Query>
     );
