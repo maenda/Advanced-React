@@ -17,9 +17,7 @@ class DeleteItem extends Component {
     // 1. read the cache for the items we want
     const data = cache.readQuery({ query: ALL_ITEMS_QUERY });
     // 2. filter the deleted item out of the page
-    console.log('data before:', data);
     data.items = data.items.filter(item => item.id !== payload.data.deleteItem.id);
-    console.log('data after:', data);
     // 3. put the items back
     cache.writeQuery({ query: ALL_ITEMS_QUERY, data });
   }
@@ -32,8 +30,12 @@ class DeleteItem extends Component {
       >
         {(deleteItem, { error }) => (
           <button onClick={() => {
-            if(confirm('Are you sure? ')) {
-              deleteItem();
+            if (confirm('Are you sure? ')) {
+              deleteItem()
+                .catch(err => {
+                  alert(err.message)
+                })
+                ;
             }
           }}>{this.props.children}</button>
         )}
