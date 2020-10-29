@@ -99,6 +99,7 @@ class UserPermissions extends React.Component {
                 checked={this.state.permissions.includes(permission)}
                 value={permission}
                 onChange={this.handlePermissionChange}
+                id={`${user.id}-permission-${permission}`}
               />
             </label>
           </td>
