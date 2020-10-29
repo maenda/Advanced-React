@@ -225,7 +225,6 @@ const Mutation = {
     });
     // 3. Check if that item is already in their cart and increment by 1 if it is
     if (existingCartItem) {
-      console.log('This item is already in their cart');
       return ctx.db.mutation.updateCartItem({
         where : { id: existingCartItem.id },
         data: { quantity: existingCartItem.quantity + 1 },
@@ -241,6 +240,26 @@ const Mutation = {
           connect: { id: args.id }
         }
       }
+    }, info)
+  },
+  async removeFromCart(parent, args, ctx, info) {
+    // 1. Find the cart item
+    const cartItem = await ctx.db.query.cartItem({
+      where: {
+        id: args.id,
+      }
+    }, `{id, user { id }}`);
+    // 1.5 Make sure we found an item
+    if (!cartItem) {
+      throw new Error('No CartItem Found!');
+    }
+    // 2. Make sure they own that cart item
+    if (cartItem.user.id !== ctx.request.userId) {
+      throw new Error('Cheatin huh?');
+    }
+    // 3. Delete that cart item
+    return ctx.db.mutation.deleteCartItem({
+      where: {id: args.id}
     }, info)
   }
 };
