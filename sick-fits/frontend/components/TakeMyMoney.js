@@ -30,16 +30,16 @@ function totalItems(cart) {
 }
 
 class TakeMyMoney extends React.Component {
-  onToken = (res, createOrder) => {
-    console.log('on token called');
-    console.log(res.id);
-    createOrder(
+  onToken = async (res, createOrder) => {
+    const order = await createOrder(
       {
         variables: {
           token: res.id
         }
       }
     ).catch(err => alert(err.message));
+
+    console.log(order);
   }
   render() {
     return (
@@ -47,14 +47,14 @@ class TakeMyMoney extends React.Component {
         {({ data: { me } }) => (
           <Mutation
             mutation={CREATE_ORDER_MUTATION}
-            refetchQueries={[CURRENT_USER_QUERY]}
+            refetchQueries={[{ query: CURRENT_USER_QUERY }]}
           >
             {(createOrder) => (
               <StripeCheckout
                 amount={calcTotalPrice(me.cart)}
                 name="Sick Fits"
                 description={`Order of ${totalItems(me.cart)} items!`}
-                image={me.cart[0].item && me.cart[0].item.image}
+                image={me.cart.length && me.cart[0].item && me.cart[0].item.image}
                 stripeKey="pk_test_51Hij8MFex0tU2WUXRaVQsgyDh2xc2X0TRWM3oMtRFBMUJWxbqvl4EjUsQ6nrLoTUPexGzGXhSCgEbo0Na8Le7ZwS00mnNtPvw5"
                 currency="USD"
                 email={me.email}
