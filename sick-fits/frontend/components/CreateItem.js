@@ -28,11 +28,11 @@ const CREATE_ITEM_MUTATION = gql`
 
 class CreateItem extends Component {
   state = {
-    title: 'cool',
-    description: 'desc',
+    title: '',
+    description: '',
     image: '',
     largeImage: '',
-    price: 1,
+    price: 0,
   };
 
   handleChange = (e) => {
@@ -50,9 +50,9 @@ class CreateItem extends Component {
 
     const res = await fetch(
       'https://api.cloudinary.com/v1_1/diz9vl2qx/image/upload', {
-        method: 'POST',
-        body: data
-      });
+      method: 'POST',
+      body: data
+    });
     const file = await res.json();
 
     this.setState({
@@ -64,8 +64,8 @@ class CreateItem extends Component {
   render() {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
-        {(createItem, {loading, error}) => (
-          <Form onSubmit={async (e) => {
+        {(createItem, { loading, error }) => (
+          <Form data-test="form" onSubmit={async (e) => {
             // Stop the form submitting
             e.preventDefault();
             // Call the mutation
@@ -79,7 +79,7 @@ class CreateItem extends Component {
           }}>
             <Error error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
-            <label htmlFor="file">
+              <label htmlFor="file">
                 Image
                 <input
                   type="file"
