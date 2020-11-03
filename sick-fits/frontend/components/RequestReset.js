@@ -27,11 +27,15 @@ class RequestReset extends Component {
       >
         {(reset, { error, loading, called }) => {
           return (
-            <Form method="post" onSubmit={async (e) => {
-              e.preventDefault();
-              await reset();
-              this.setState({ email: '' })
-            }}>
+            <Form
+              data-test="form"
+              method="post"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                await reset();
+                this.setState({ email: '' })
+              }}
+            >
               <fieldset disabled={loading} aria-busy={loading}>
                 <h2>Request a Password reset</h2>
                 <Error error={error} />
@@ -58,3 +62,4 @@ class RequestReset extends Component {
 }
 
 export default RequestReset;
+export { REQUEST_RESET_MUTATION };
