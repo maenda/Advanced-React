@@ -6,8 +6,8 @@ import Error from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
 
 const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION($name: String!, $password: String!, $email: String!) {
-    signUp(email: $email, name: $name, password: $password) {
+  mutation SIGNUP_MUTATION($email: String!, $name: String!, $password: String!) {
+    signup(email: $email, name: $name, password: $password) {
       id
       email
       name
@@ -18,12 +18,12 @@ const SIGNUP_MUTATION = gql`
 class Signup extends Component {
   state = {
     name: '',
-    password: '',
     email: '',
-  }
-  saveToState = (e) => {
+    password: '',
+  };
+  saveToState = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
   render() {
     return (
       <Mutation
@@ -31,54 +31,57 @@ class Signup extends Component {
         variables={this.state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
-        {(signUp, { error, loading }) => {
-          return (
-            <Form method="post" onSubmit={async (e) => {
+        {(signup, { error, loading }) => (
+          <Form
+            method="post"
+            onSubmit={async e => {
               e.preventDefault();
-              await signUp();
-              this.setState({ name: '', email: '', password: '' })
-            }}>
-              <fieldset disabled={loading} aria-busy={loading}>
-                <h2>Sign up for an account</h2>
-                <Error error={error} />
-                <label htmlFor="email">
-                  Email
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="email"
-                    value={this.state.email}
-                    onChange={this.saveToState}
-                  />
-                </label>
-                <label htmlFor="name">
-                  Name
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="name"
-                    value={this.state.name}
-                    onChange={this.saveToState}
-                  />
-                </label>
-                <label htmlFor="password">
-                  Password
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    value={this.state.password}
-                    onChange={this.saveToState}
-                  />
-                </label>
-                <button type="submit">Sign Up</button>
-              </fieldset>
-            </Form>
-          )
-        }}
+              await signup();
+              this.setState({ name: '', email: '', password: '' });
+            }}
+          >
+            <fieldset disabled={loading} aria-busy={loading}>
+              <h2>Sign Up for An Account</h2>
+              <Error error={error} />
+              <label htmlFor="email">
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  value={this.state.email}
+                  onChange={this.saveToState}
+                />
+              </label>
+              <label htmlFor="name">
+                Name
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="name"
+                  value={this.state.name}
+                  onChange={this.saveToState}
+                />
+              </label>
+              <label htmlFor="password">
+                Password
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={this.saveToState}
+                />
+              </label>
+
+              <button type="submit">Sign Up!</button>
+            </fieldset>
+          </Form>
+        )}
       </Mutation>
-    )
+    );
   }
 }
 
 export default Signup;
+export { SIGNUP_MUTATION };
