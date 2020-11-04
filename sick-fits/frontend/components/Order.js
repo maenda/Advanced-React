@@ -52,25 +52,25 @@ class Order extends React.Component {
               </Head>
               <p>
                 <span>Order ID:</span>
-                <span>{order.id}</span>
+                <span data-test="order-id">{order.id}</span>
               </p>
               <p>
                 <span>Charge</span>
-                <span>{order.charge}</span>
+                <span data-test="order-charge">{order.charge}</span>
               </p>
               <p>
                 <span>Date</span>
-                <span>{format(order.createdAt, 'MMMM, d, YYYY h:mm a')}</span>
+                <span data-test="order-date">{format(order.createdAt, 'MMMM, d, YYYY h:mm a')}</span>
               </p>
               <p>
                 <span>Order Total</span>
-                <span>{formatMoney(order.total)}</span>
+                <span data-test="order-total">{formatMoney(order.total)}</span>
               </p>
               <p>
                 <span>Item Couunt</span>
-                <span>{order.items.length}</span>
+                <span data-test="order-count">{order.items.length}</span>
               </p>
-              <div className="items">
+              <div className="items" data-test="order-items">
                 {order.items.map(item => (
                   <div className="order-item" key={item.id}>
                     <img src={item.image} alt={item.title} />
@@ -94,3 +94,4 @@ class Order extends React.Component {
 }
 
 export default Order;
+export { SINGLE_ORDER_QUERY };

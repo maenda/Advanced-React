@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Order /> renders with proper data 1`] = `
+<span
+  data-test="order-id"
+>
+  ord123
+</span>
+`;
+
+exports[`<Order /> renders with proper data 2`] = `
+<span
+  data-test="order-charge"
+>
+  ch_123
+</span>
+`;
+
+exports[`<Order /> renders with proper data 3`] = `
+<span
+  data-test="order-date"
+>
+  March, 31, 2018 8:00 PM
+</span>
+`;
+
+exports[`<Order /> renders with proper data 4`] = `
+<span
+  data-test="order-total"
+>
+  $400
+</span>
+`;
+
+exports[`<Order /> renders with proper data 5`] = `
+<span
+  data-test="order-count"
+>
+  2
+</span>
+`;
+
+exports[`<Order /> renders with proper data 6`] = `
+<div
+  className="items"
+  data-test="order-items"
+>
+  <div
+    className="order-item"
+    key="3a430a73-c9e9-4bcc-b46a-41618965ffea"
+  >
+    <img
+      alt="soluta non omnis consequatur enim quia autem"
+      src="reprehenderit.jpg"
+    />
+    <div
+      className="item-details"
+    >
+      <h2>
+        soluta non omnis consequatur enim quia autem
+      </h2>
+      <p>
+        Qty: 
+        1
+      </p>
+      <p>
+        Each: 
+        $42.34
+      </p>
+      <p>
+        Subtotal: 
+        $42.34
+      </p>
+      <p>
+        Description: 
+        et modi tenetur amet modi reprehenderit omnis
+      </p>
+    </div>
+  </div>
+  <div
+    className="order-item"
+    key="2393e090-592f-4d03-b808-c9d81098deec"
+  >
+    <img
+      alt="quia sed exercitationem omnis laborum exercitationem est"
+      src="sint.jpg"
+    />
+    <div
+      className="item-details"
+    >
+      <h2>
+        quia sed exercitationem omnis laborum exercitationem est
+      </h2>
+      <p>
+        Qty: 
+        1
+      </p>
+      <p>
+        Each: 
+        $42.34
+      </p>
+      <p>
+        Subtotal: 
+        $42.34
+      </p>
+      <p>
+        Description: 
+        sapiente laudantium molestias assumenda quasi adipisci mollitia
+      </p>
+    </div>
+  </div>
+</div>
+`;
