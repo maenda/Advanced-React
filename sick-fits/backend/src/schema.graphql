@@ -49,4 +49,5 @@ type User implements Node {
   email: String!
   permissions: [Permission!]!
   cart: [CartItem!]!
+  orders: [OrderItem]
 }

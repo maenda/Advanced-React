@@ -4,3 +4,4 @@ export default function calcTotalPrice(cart) {
     return tally + cartItem.quantity * cartItem.item.price;
   }, 0);
 }
+// something

@@ -7,7 +7,7 @@ import { CURRENT_USER_QUERY } from './User';
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION($email: String!, $name: String!, $password: String!) {
-    signup(email: $email, name: $name, password: $password) {
+    signUp(email: $email, name: $name, password: $password) {
       id
       email
       name
@@ -31,12 +31,12 @@ class Signup extends Component {
         variables={this.state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
-        {(signup, { error, loading }) => (
+        {(signUp, { error, loading }) => (
           <Form
             method="post"
             onSubmit={async e => {
               e.preventDefault();
-              await signup();
+              await signUp();
               this.setState({ name: '', email: '', password: '' });
             }}
           >

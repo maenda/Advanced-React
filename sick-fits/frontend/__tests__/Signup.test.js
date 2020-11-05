@@ -28,7 +28,7 @@ const mocks = [
     },
     result: {
       data: {
-        signup: {
+        signUp: {
           __typename: 'User',
           id: 'abc123',
           email: me.email,
